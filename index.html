@@ -1,12 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Photo</title>
+    <link rel="shorticon icon" href="img/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/07af8a896d.js" crossorigin="anonymous"></script>
+    <script src="js/common.js"></script>
 </head>
 <body>
-  <p>Hello, World!</p>
+    <header>
+        <div class="headerFrame">
+            <div class="headerBg">
+                <div class="slide slide_00" rel="0"></div>
+                <div class="slide slide_01" rel="1"></div>
+                <div class="slide slide_02" rel="2"></div>
+                <div class="slide slide_03" rel="3"></div>
+                <div class="slide slide_04" rel="4"></div>
+                <div class="slide slide_05" rel="5"></div>
+                <div class="slide slide_06" rel="6"></div>
+            </div>
+            <div class="headerDarkBg">
+                <div id="topBar">
+                    <div class="frame">
+                        <div class="logo">
+                            <a href="index.html"></a>
+                        </div>
+                        <nav class="mainMenu">
+                            <ul>
+                                <li><a class="loginBtn link" href="">LOGIN</a></li>
+                                <li><a class="joinBtn link" href="">JOIN</a></li>
+                                <li class="mobileMenu"><a class="menu_hamburger link" href="">
+                                    <span class="f_hamburger"></span>
+                                    <span class="s_hamburger"></span>
+                                    <span class="t_hamburger"></span>
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <ul class="mobileSubMenu">
+                    <li><a class="loginBtn link" href="">LOGIN</a></li>
+                    <li><a class="joinBtn link" href="">JOIN</a></li>
+                </ul>
+
+                <div id="pageSection">
+                    <div class="frame">
+                        <p class="subTitle">Everyday take a picture</p>
+                        <h1 class="mainTitle">Stock Photo</h1>
+                        <div class="searchSection">
+                            <img src="img/icon/icon-search.png" alt="search">
+                            <input type="text" placeholder="Search free high-resolution photo">
+                        </div>
+                        <p class="recoWord">Trending : flower, love, computer, camera, love</p>
+                        <div class="moreBtn">
+                            <div class="moreBtn_bg"></div>
+                            <p class="btnText">+ Read More</p>
+                        </div>
+                        <div class="nextBtn link">
+                            <div class="nextBtn_topLine"></div>
+                            <div class="nextBtn_botLine"></div>
+                            <p class="nextBtn_topText btnText">01.</p>
+                            <p class="nextBtn_botText btnText">animal</p>
+                        </div>
+                        <div class="prevBtn link">
+                            <div class="prevBtn_topLine"></div>
+                            <div class="prevBtn_botLine"></div>
+                            <p class="prevBtn_topText btnText">06.</p>
+                            <p class="prevBtn_botText btnText">nature</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="loginSection">
+                    <div class="darkBg"></div>
+                    <div class="loginWindow">
+                        <p class="closeBtn">×</p>
+                        <h3 class="loginTitle">Login Stock Photo</h3>
+                        <p>don't have an account?</p>
+                        <p class="joinLink"><a href="">Join</a></p>
+                        <div class="loginInputBox">
+                            <label class="emailAddress" for="email">Email address</label>
+                            <input type="text" name="email">
+                            <label class="passWord" for="password">Password</label>
+                            <input type="password" name="passWord">
+                        </div>
+                        <p><a href="">Forgot your Email or Password?</a></p>
+                        <div class="loginBtn">
+                            <p>Login</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="joinSection">
+                    <div class="darkBg"></div>
+                    <div class="joinWindow">
+                        <p class="closeBtn">×</p>
+                        <h3 class="loginTitle">Join Stock Photo</h3>
+                        <p>Already have an account? </p>
+                        <p class="loginLink"><a href="">Login</a></p>
+                        <div class="joinInputBox">
+                            <label class="firstName" for="firstname">First Name</label>
+                            <input type="text" name="firstname">
+                            <label class="lastName" for="lastname">Last Name</label>
+                            <input type="text" name="email">
+                            <label class="emailAddress" for="email">Email address</label>
+                            <input type="text" name="email">
+                            <label class="passWord" for="password">Password</label>
+                            <input type="password" name="passWord">
+                        </div>
+                        <div class="joinBtn">
+                            <p>Join</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div id="content"></div>
+
+        <div class="imgPopUpWindow">
+            <div class="blackBg"></div>
+            <div class="imgPopup">
+                <span class="close_btn">×</span>
+                <div class="popupImg"></div>
+            </div>
+        </div>        
+
+        <div class="topBtn">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </div>
+
+        <div class="clear"></div>
+        
+        <div id="footer">
+            <div class="frame">
+                <div class="secFrame">
+                    <div class="secLeft">
+                        <ul>
+                            <li><a class="link" href="">Privacy Polisy</a></li>
+                            <li><a class="link" href="">Terms</a></li>
+                            <li><a class="link" href="">Security</a></li>
+                        </ul>
+                    </div>
+                    <div class="secRight">
+                        <ul>
+                            <li><a class="link" href="">
+                                <i class="fab fa-instagram-square" alt="follow instargram"></i>
+                            </a></li>
+                            <li><a class="link" href="">
+                                <i class="fab fa-twitter-square" alt="follow twitter"></i>
+                            </a></li>
+                            <li><a class="link" href="">
+                                <i class="fab fa-youtube-square" alt="subscript youtube"></i>
+                            </a></li>
+                            <li><a class="link" href="">
+                                <i class="fab fa-facebook-square" alt="fallow follow facebook"></i>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="footerText">
+                    <h3>Stock PhoTo</h3>
+                    <p>Beautiful, free images gifted by the world’s most generous community of photographers. Better than any royalty free or stock photos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 </body>
 </html>
