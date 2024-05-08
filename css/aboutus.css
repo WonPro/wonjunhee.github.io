@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* About Us Page */
+
+.aboutUsFrame{width: 100%; height: auto;}
+.aboutUsFrame .rgstSection{width: 1200px; height: auto; margin: 0 auto; padding: 60px 8.33%;}
+.rgstSection .leftSection{float: left; width: 50%;}
+.rgstSection .leftSection .l_sec_tit{width: 60%; font-size: 40px; font-weight: bold; color: #777; word-break: keep-all; margin-top: 50px;}
+.rgstSection .leftSection .l_sec_txt{width: 80%; font-size: 16px; color: #777; word-break: keep-all; margin-top: 20px;}
+.rgstSection .leftSection .l_sec_btn{width: 160px; height: 40px; background: #444; border-radius: 8px; margin-left: 20%; margin-top: 50px; cursor: pointer;}
+.rgstSection .leftSection .l_sec_btn:hover{background: #777;}
+.rgstSection .leftSection .l_sec_btn p{font-size: 16px; font-weight: bold; color: #fff; line-height: 40px; text-align: center;}
+
+.rgstSection .rightSection{float: right; width: 50%;}
+.rgstSection .rightSection .r_sec_img{width: 100%; height: 580px; background: url(../img/aboutus/img_rgst.jpg) 50% 50% no-repeat; background-size: contain;}
+.aboutUsFrame .rgstSection::after{content: ""; display: block; clear: both;}
+
+
+.secIntroduce{width: 1200px; height: auto; margin: 0 auto; padding: 60px 10px;}
+.secIntroduce .boxTitle{font-size: 40px; color: #777; text-align: center; width: 49.98%; word-break: keep-all; margin: 0 auto;}
+.secIntroduce .contBox{padding: 10px; margin: 20px 0;}
+.secIntroduce .contBox .leftBox{width: calc(58.31% - 20px); float: left; padding: 0 10px;}
+.secIntroduce .contBox .leftBox .l_box_tit{font-size: 20px; font-weight: bold; color: #777; margin: 20px 0;}
+.secIntroduce .contBox .leftBox .l_box_txt{font-size: 16px; color: #777; margin: 10px 0;}
+
+.secIntroduce .contBox .rightBox{width: calc(41.65% - 20px); float: right; padding: 0 10px;}
+.secIntroduce .contBox .rightBox .r_box_img{width: 100%; height: 300px; background-position: 50% 50%; background-size: contain; background-repeat: no-repeat; border-radius: 8px;}
+.secIntroduce .contBox:nth-child(2) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro1.jpg);}
+.secIntroduce .contBox:nth-child(3) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro2.jpg);}
+.secIntroduce .contBox:nth-child(4) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro3.jpg);}
+
+.secIntroduce .contBox:nth-child(3) .leftBox{float: right;}
+.secIntroduce .contBox:nth-child(3) .rightBox{float: left;}
+.secIntroduce .contBox::after{content: ""; display: block; clear: both;}
+
+
+@media (max-width:1199px){
+    #content{width: 100%;}
+    .aboutUsFrame .rgstSection{width: 100%; padding: 60px 10px;}
+    .rgstSection .leftSection .l_sec_tit{width: 100%; text-align: center; padding: 0 20px;}
+    .rgstSection .leftSection .l_sec_txt{width: 100%; text-align: center; padding: 0 20px}
+    .rgstSection .leftSection .l_sec_btn{margin: 50px auto 0;}
+    .secIntroduce{width: 100%;}
+}
+
+@media (max-width:575px){
+    .aboutUsFrame{background: none;}
+
+    .rgstSection .leftSection{float: none; width: 100%;}
+    .rgstSection .leftSection .l_sec_btn{width: 30%; margin: 0 auto; margin-top: 30px;}
+    .rgstSection .leftSection .l_sec_tit{width: 90%; font-size: 30px; margin: 0 auto; text-align: center;}
+    .rgstSection .leftSection .l_sec_txt{width: 90%; font-size: 16px; margin: 0 auto;}
+
+    .rgstSection .rightSection{display: none;}
+
+    .secIntroduce .boxTitle{font-size: 30px; width: 100%;}
+
+    .secIntroduce .contBox .leftBox{width: 100%; float: none; padding: 0;}
+    .secIntroduce .contBox .rightBox{width: 100%; float: none; padding: 0;}
+
+
+}
