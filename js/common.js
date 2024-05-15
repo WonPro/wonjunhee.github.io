@@ -143,67 +143,34 @@ $(document).ready(function(){
     $("#pageSection .moreBtn").click(function(){
         $("section").show();
         var $now_view = $(".slide.view").attr("rel");
-        if($now_view==0){
+        var urls = [
+            "aboutus.html",
+            "animal.html",
+            "art.html",
+            "business.html",
+            "food.html",
+            "interior.html",
+            "nature.html"
+        ];
+    
+        if ($now_view >= 0 && $now_view < urls.length) {
             $.ajax({
-                url:"aboutus.html",
-                method:"get",
-                success:function(result){
+                url: urls[$now_view],
+                method: "GET",
+                success: function(result) {
                     $("#content").html(result);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error loading " + urls[$now_view] + ": " + error);
                 }
             });
-        }else if($now_view==1){
-            $.ajax({
-                url:"animal.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
-        }else if($now_view==2){
-            $.ajax({
-                url:"art.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
-        }else if($now_view==3){
-            $.ajax({
-                url:"business.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
-        }else if($now_view==4){
-            $.ajax({
-                url:"food.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
-        }else if($now_view==5){
-            $.ajax({
-                url:"interior.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
-        }else if($now_view==6){
-            $.ajax({
-                url:"nature.html",
-                method:"get",
-                success:function(result){
-                    $("#content").html(result);
-                }
-            });
+        } else {
+            console.error("Invalid view index: " + $now_view);
         }
-        
-        $("html, body").animate({scrollTop : $("section").offset().top-100}, 1000);
-                    
+    
+        $("html, body").animate({scrollTop: $("section").offset().top - 100}, 1000);
     });
+    
 
 
     //Page Button Part
