@@ -6,13 +6,6 @@ $(document).ready(function(){
         browserWidth();
     });
 
-    // 모달을 열 때
-    document.body.classList.add('modal-open');
-
-    // 모달을 닫을 때
-    document.body.classList.remove('modal-open');
-
-
 //Slider Part
     var $slider = [
         ["main_00", "Stock Photo", "+ Read More", "Main", "Page", "Everyday take a picture"],
@@ -106,33 +99,33 @@ $(document).ready(function(){
     });
     
 
-//Login Pop-up Part
-    $(".loginBtn").click(function(){
-        $("#loginSection").fadeIn(300);
+    function togglePopup(selector, disableScroll) {
+        $(selector).fadeToggle(300);
+        if (disableScroll) {
+            $("body").toggleClass("modal-open");
+        }
         return false;
+    }
+    
+    $(".loginBtn").click(function() {
+        togglePopup("#loginSection", true);
     });
-    $("#loginSection .closeBtn, #loginSection .darkBg").click(function(){
-        $("#loginSection").fadeOut(300);
+    
+    $(".joinBtn").click(function() {
+        togglePopup("#joinSection", true);
     });
-    $("#loginSection .joinLink").click(function(){
-        $("#loginSection").hide();
-        $("#joinSection").show();
-        return false;
+    
+    $(".closeBtn, .darkBg").click(function() {
+        var sectionId = $(this).closest("section").attr("id");
+        togglePopup("#" + sectionId, false);
     });
-
-//Join Pop-up Part
-    $(".joinBtn").click(function(){
-        $("#joinSection").fadeIn(300);
-        return false;
+    
+    $(".loginLink, .joinLink").click(function() {
+        var targetId = $(this).data("target");
+        togglePopup("#loginSection, #joinSection", true);
+        togglePopup(targetId, true);
     });
-    $("#joinSection .closeBtn, #joinSection .darkBg").click(function(){
-        $("#joinSection").fadeOut(300);
-    });
-    $("#joinSection .loginLink").click(function(){
-        $("#joinSection").hide();
-        $("#loginSection").show();
-        return false;
-    });
+    
 
 //More Button Part
     $(".moreBtn").hover(function(){
