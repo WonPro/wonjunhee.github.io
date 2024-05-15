@@ -146,7 +146,7 @@ $(document).ready(function(){
         if($now_view==0){
             $.ajax({
                 url:"aboutus.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -154,7 +154,7 @@ $(document).ready(function(){
         }else if($now_view==1){
             $.ajax({
                 url:"animal.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -162,7 +162,7 @@ $(document).ready(function(){
         }else if($now_view==2){
             $.ajax({
                 url:"art.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -170,7 +170,7 @@ $(document).ready(function(){
         }else if($now_view==3){
             $.ajax({
                 url:"business.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -178,7 +178,7 @@ $(document).ready(function(){
         }else if($now_view==4){
             $.ajax({
                 url:"food.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -186,7 +186,7 @@ $(document).ready(function(){
         }else if($now_view==5){
             $.ajax({
                 url:"interior.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
@@ -194,7 +194,7 @@ $(document).ready(function(){
         }else if($now_view==6){
             $.ajax({
                 url:"nature.html",
-                type:"post",
+                method:"get",
                 success:function(result){
                     $("#content").html(result);
                 }
