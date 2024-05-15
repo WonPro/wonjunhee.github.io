@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("section").hide();
+    $("#contentSection").hide();
         
     browserWidth();
     $(window).resize(function(){
@@ -17,21 +17,21 @@ $(document).ready(function(){
         ["main_06", "Nature", "+ More View", "06.", "Nature", "Stock Photo"]
     ];
 
-    $(".headerFrame .slide").each(function(index){
+    $("#mainVisualSlideWrap .slideItem").each(function(index){
         $(this).css("background-image", "url(img/title/"+$slider[index][0]+".jpg)");
     });
 
 
-    var $last_slide = $(".headerBg .slide").last();
+    var $last_slide = $("#mainVisualSlideWrap .slideItem").last();
     
-    $(".headerBg").prepend($last_slide).css("margin-left", "-100%");
-    $(".headerBg .slide").eq(1).addClass("view");
+    $("#mainVisualSlideWrap").prepend($last_slide).css("margin-left", "-100%");
+    $("#mainVisualSlideWrap .slideItem").eq(1).addClass("view");
 
     function main_title(){
-        var $now_view = $(".slide.view").attr("rel");
-        var $next_view = $(".slide.view").next().attr("rel");
-        var $prev_view = $(".slide.view").prev().attr("rel");
-        // console.log($now_view); 
+        var $now_view = $(".slideItem.view").attr("rel");
+        var $next_view = $(".slideItem.view").next().attr("rel");
+        var $prev_view = $(".slideItem.view").prev().attr("rel");
+        console.log($now_view); 
         $(".mainTitle").text($slider[$now_view][1]);
         $(".moreBtn .btnText").text($slider[$now_view][2]);
         $(".nextBtn .nextBtn_topText").text($slider[$next_view][3]);
@@ -45,10 +45,10 @@ $(document).ready(function(){
 //Top Bar Scroll Part
     $(window).scroll(function(){
         var cur_scrollTop = $(window).scrollTop();
-        if(cur_scrollTop > 100){
-            $("#topBar").addClass("sticky");
+        if(cur_scrollTop > 1){
+            $("header").addClass("sticky");
         }else{
-            $("#topBar").removeClass("sticky");
+            $("header").removeClass("sticky");
         }
     });
 
@@ -62,7 +62,7 @@ $(document).ready(function(){
             $(".headerBg .slide").eq(1).addClass("view");
             main_title();
         });
-        $("section").hide();
+        $("#contentSection").hide();
     });
 
 //Previouspage Part
@@ -75,7 +75,7 @@ $(document).ready(function(){
             $(".headerBg .slide").eq(1).addClass("view");
             main_title();
         });
-        $("section").hide();
+        $("#contentSection").hide();
     });
 
 //Hamburger Menu Part
@@ -107,11 +107,11 @@ $(document).ready(function(){
         return false;
     }
     
-    $(".loginBtn").click(function() {
+    $("#loginBtn").click(function() {
         togglePopup("#loginSection", true);
     });
     
-    $(".joinBtn").click(function() {
+    $("#joinBtn").click(function() {
         togglePopup("#joinSection", true);
     });
     
@@ -339,8 +339,4 @@ $(document).ready(function(){
     $(".topBtn").click(function(){
         $("html, body").animate({scrollTop : 0}, 500);
     });
-
-    
-
-
 });

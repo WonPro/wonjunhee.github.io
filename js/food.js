@@ -36,17 +36,4 @@ $(document).ready(function(){
         $(".imgPopUpWindow").removeClass("active");
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

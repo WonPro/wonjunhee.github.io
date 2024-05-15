@@ -2,10 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Orbitron:400,700|Roboto&display=swap');
 
 
-*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'Roboto', sans-serif;}
+*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 10px;}
 html, body{margin: 0; padding: 0;}
 header, section, article, nav, footer{margin: 0; padding: 0; display: block;}
-header::after, section::after, article::after, nav::after, footer::after{content: ""; clear: both; display: block;}
 h1, h2, h3, h4, h5, h6{margin: 0; padding: 0; font-family: 'Orbitron', 'Roboto';}
 p, i{margin: 0; padding: 0; font-family: 'Roboto';}
 ul, ol{list-style: none; margin: 0; padding: 0;}
@@ -14,51 +13,161 @@ a{text-decoration: none;}
 .btnText{font-family: 'Orbitron';}
 .link{opacity: 0.7; transition: opacity 0.3;}
 .link:hover{opacity: 1;}
-h2.sectionTitle{font-size: 40px; line-height: 60px; color: #333; text-align: center; padding: 60px 0; border-bottom: 1px solid #777;}
 
 body.modal-open {overflow: hidden;}
 
-
-/* Slider Part Start */
-header{width: 100%; height: 100vh; position: relative;}
-.headerFrame{height: auto; overflow: hidden;}
-.headerFrame .headerBg{width: 700%; height: 100vh;}
-.headerFrame .headerBg .slide{width: calc(100% / 7); height: 100%; background-position: 50% 50%; background-repeat: no-repeat; background-size: cover; float: left;}
-header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0;}
-/* Slider Part End */
-
-
-
 /* Top Menu Bar Start */
-#topBar{width: 100%; height: 100px; border-bottom: 1px solid #fff; position: absolute; top: 0;}
-#topBar .frame{width: 1200px; height: 100%; margin: 0 auto; padding: 0 10px;}
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-bottom: 1px solid #fff;
+}
+
+.topBar{
+    width: 120rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.topBar .logoLink .logo{
+    width: 16.8rem;
+    height: 6.8rem;
+    display: block;
+    background: url(../img/icon/img_logo.png) 50% 50% no-repeat;
+    background-size: contain;
+}
+
+.topBar .mainMenu{
+    display: flex;
+    justify-content: space-between;
+}
+.topBar .mainMenu li a{
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 20px;
+}
 
 
-#topBar .frame .logo{float: left; padding-top: 30px;}
-#topBar .frame .logo a{display: block; width: 139px; height: 40px; background: url(../img/icon/img-logofull.png) 50% 50% no-repeat; background-size: contain;}
-
-#topBar .frame .mainMenu{float: right;}
-#topBar .frame .mainMenu ul{}
-#topBar .frame .mainMenu ul li{float: left; text-align: center;}
-#topBar .frame .mainMenu ul li a{display: block; font-size: 18px; font-weight: bold; color: #fff; margin: 0 20px; line-height: 100px;}
-
-
-#topBar .frame .mainMenu ul li:last-child a{padding: 0 15px; width: 56px; height: 100px; position: relative;}
-#topBar .frame .mainMenu ul li a span{width: 26px; height: 4px; background: #fff; border-radius: 4px; display: block; position: absolute;}
-#topBar .frame .mainMenu ul li a span:last-child{margin-bottom: 0;}
+.topBar .frame .mainMenu ul li:last-child a{padding: 0 15px; width: 56px; height: 100px; position: relative;}
+.topBar .frame .mainMenu ul li a span{width: 26px; height: 4px; background: #fff; border-radius: 4px; display: block; position: absolute;}
+.topBar .frame .mainMenu ul li a span:last-child{margin-bottom: 0;}
 .f_hamburger{top: 38px; transition: transform 0.3s;}
 .f_hamburger.active{transform: rotate(45deg);}
 .s_hamburger{top: 46px; transition: transform 0.3s;}
 .t_hamburger{top: 54px; transition: transform 0.3s;}
 .s_hamburger.active, .t_hamburger.active{transform: rotate(-45deg);}
 
-#topBar.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0,0.7);}
-#topBar .mobileMenu{display: none;}
+header.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0,0.7);}
+.topBar .mobileMenu{display: none;}
 
 .mobileSubMenu{background: rgba(0,0,0,0.8); width: 100%; position: fixed; top: 100px; left: 0; display: none;}
 .mobileSubMenu li{float: left; width: 50%; line-height: 60px;}
 .mobileSubMenu li a{display: block; font-size: 16px; color: #fff; text-align: center;}
 /* Top Menu Bar End */
+
+
+/* Slider Part Start */
+.mainVisual{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.videoContainer{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    padding-top: 56.25%; /* 16:9 비율의 동영상을 위한 높이 설정 */
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.videoContainer .bgv{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비디오가 화면에 꽉 차게 설정 */
+}
+
+.videoContainer .blueScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,80,0.4);
+}
+.specialHeading,
+.specialHeading span{
+    font-family: 'Orbitron', 'Roboto';
+    font-size: 7rem;
+    color: #fff;
+}
+.specialHeading #typedText{
+    color: #dd9f01;
+}
+.typed-cursor {
+    animation: blink .7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+
+#mainVisual{
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+}
+
+#mainVisual #mainVisualSlideWrap{
+    width: 700%;
+    height: 100vh;
+}
+
+#mainVisual #mainVisualSlideWrap .slideItem{
+    width: calc(100% / 7);
+    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: left;
+}
+
+#mainVisual .headerDarkBg{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* Slider Part End */
+
+
+
+
 
 
 
@@ -112,9 +221,9 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
 #loginSection .loginWindow .loginInputBox label{display: block; font-size: 16px; color: #777; margin-top: 20px; padding-left: 10px;}
 #loginSection .loginWindow .loginInputBox input{width: 100%; height: 30px; margin-top: 10px; padding-left: 10px; border: 1px solid #777; border-radius: 4px;}
 
-#loginSection .loginBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
-#loginSection .loginBtn:hover{background: #333;}
-#loginSection .loginBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
+#loginSection #loginBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
+#loginSection #loginBtn:hover{background: #333;}
+#loginSection #loginBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
 /* Login Window End */
 
 
@@ -133,9 +242,9 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
 #joinSection .joinWindow .joinInputBox label{display: block; font-size: 16px; color: #777; margin-top: 10px; padding-left: 10px;}
 #joinSection .joinWindow .joinInputBox input{width: 100%; height: 30px; margin-top: 5px; padding-left: 10px; border: 1px solid #777; border-radius: 4px;}
 
-#joinSection .joinBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
-#joinSection .joinBtn:hover{background: #333;}
-#joinSection .joinBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
+#joinSection #joinBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
+#joinSection #joinBtn:hover{background: #333;}
+#joinSection #joinBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
 /* Join Window End */
 
 
@@ -187,9 +296,9 @@ section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #ff
 
 /* Media Query Part Start */
 @media (max-width : 1199px){
-    #topBar .frame{width: 100%;}
-    #topBar .frame .mainMenu ul li{display: none;}
-    #topBar .frame .mainMenu ul li:last-child{display: block;}
+    .topBar .frame{width: 100%;}
+    .topBar .frame .mainMenu ul li{display: none;}
+    .topBar .frame .mainMenu ul li:last-child{display: block;}
 
     #pageSection{width: 100%;}
     #pageSection .mainTitle{font-size: 10vw;}
@@ -209,7 +318,7 @@ section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #ff
         0%;}
     #joinSection .joinWindow{width: 90%; height: 90%;}
     #joinSection .joinWindow .joinInputBox{margin: 30px auto;}
-    #loginSection .loginWindow .loginBtn, #joinSection .joinWindow .joinBtn{margin-top: 10px;}
+    #loginSection .loginWindow #loginBtn, #joinSection .joinWindow #joinBtn{margin-top: 10px;}
     #loginSection .loginWindow .closeBtn, #joinSection .joinWindow .closeBtn{font-size: 40px; margin: 0; color: #333; line-height: 1; position: absolute; top: 40px; right: 40px; cursor: pointer;}
     .imgPopUpWindow .imgPopup .close_btn{font-size: 40px; margin: 0; color: #fff; line-height: 1; position: absolute; top: -50px; right: -10px; cursor: pointer;}
 
@@ -222,3 +331,4 @@ section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #ff
     #footer .frame .secRight ul li{float: none; display: inline-block;}
 }
 /* Media Query Part End */
+
