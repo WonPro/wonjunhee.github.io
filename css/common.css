@@ -1,18 +1,25 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css?family=Orbitron:400,700|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 
-*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 10px;}
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Poetsen One", sans-serif;
+    font-size: 10px;
+}
 html, body{margin: 0; padding: 0;}
 header, section, article, nav, footer{margin: 0; padding: 0; display: block;}
-h1, h2, h3, h4, h5, h6{margin: 0; padding: 0; font-family: 'Orbitron', 'Roboto';}
-p, i{margin: 0; padding: 0; font-family: 'Roboto';}
+h1, h2, h3, h4, h5, h6{margin: 0; padding: 0;}
+p, i{margin: 0; padding: 0;}
 ul, ol{list-style: none; margin: 0; padding: 0;}
 a{text-decoration: none;}
-.clear{clear: both;}
-.btnText{font-family: 'Orbitron';}
 .link{opacity: 0.7; transition: opacity 0.3;}
 .link:hover{opacity: 1;}
+.sectionTitle{font-size: 3rem; text-align: center;}
 
 body.modal-open {overflow: hidden;}
 
@@ -23,11 +30,15 @@ header{
     top: 0;
     left: 0;
     z-index: 9999;
-    border-bottom: 1px solid #fff;
+    transition: background-color 1.5s;
 }
+header.sticky{
+    background-color: rgba(0,0,0,0.7);
+}
+.topBar .mobileMenu{display: none;}
 
 .topBar{
-    width: 120rem;
+    width: 96rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,25 +58,35 @@ header{
     display: flex;
     justify-content: space-between;
 }
-.topBar .mainMenu li a{
-    font-size: 18px;
+.topBar .link{
+    position: relative;
+    font-size: 1.6rem;
     font-weight: bold;
     color: #fff;
-    margin: 0 20px;
+    margin: 0 2rem;
+}
+
+.topBar .link::after{
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: -18px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 9px solid #fff;
+    border-radius: 2px;
 }
 
 
-.topBar .frame .mainMenu ul li:last-child a{padding: 0 15px; width: 56px; height: 100px; position: relative;}
-.topBar .frame .mainMenu ul li a span{width: 26px; height: 4px; background: #fff; border-radius: 4px; display: block; position: absolute;}
-.topBar .frame .mainMenu ul li a span:last-child{margin-bottom: 0;}
 .f_hamburger{top: 38px; transition: transform 0.3s;}
 .f_hamburger.active{transform: rotate(45deg);}
 .s_hamburger{top: 46px; transition: transform 0.3s;}
 .t_hamburger{top: 54px; transition: transform 0.3s;}
 .s_hamburger.active, .t_hamburger.active{transform: rotate(-45deg);}
 
-header.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0,0.7);}
-.topBar .mobileMenu{display: none;}
+
 
 .mobileSubMenu{background: rgba(0,0,0,0.8); width: 100%; position: fixed; top: 100px; left: 0; display: none;}
 .mobileSubMenu li{float: left; width: 50%; line-height: 60px;}
@@ -77,56 +98,71 @@ header.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0
 .mainVisual{
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
-.videoContainer{
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    padding-top: 56.25%; /* 16:9 비율의 동영상을 위한 높이 설정 */
-    top: 0;
-    left: 0;
-    z-index: -1;
+.videoWrap{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
 }
-
-.videoContainer .bgv{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.videoWrap .videoContainer{
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.videoWrap .videoContainer .slideVideo{
+    flex: 0 0 100%;
+    overflow: hidden;
+}
+.videoWrap .videoContainer .slideVideo video{
+    width: 100vw;
     height: 100%;
     object-fit: cover; /* 비디오가 화면에 꽉 차게 설정 */
 }
 
-.videoContainer .blueScreen{
+.videoWrap .blueScreen{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background-color: rgba(0,0,80,0.4);
 }
+
+.videoContainer .slideVideo{width: calc(100% / 4); height: 100%; float: left;}
+header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0;}
+/* Slider Part End */
+
+.titleWrap{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    padding-top: 35vh;
+    text-align: center;
+}
 .specialHeading,
 .specialHeading span{
-    font-family: 'Orbitron', 'Roboto';
+    font-family: "Lily Script One", system-ui;
+    font-weight: 400;
+    letter-spacing: -1px;
     font-size: 7rem;
     color: #fff;
 }
 .specialHeading #typedText{
     color: #dd9f01;
 }
-.typed-cursor {
-    animation: blink .7s infinite;
+.cursor {
+    font-family: sans-serif !important;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    0%, 100% {
+    0%, 25%, 75%, 100% {
         opacity: 1;
     }
-    50% {
+    26%, 74% {
         opacity: 0;
     }
 }
@@ -164,45 +200,69 @@ header.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0
     left: 0;
 }
 /* Slider Part End */
+@keyframes pulse{
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+.mainVisual .moreBtn{
+    position: relative;
+    width: 30rem;
+    height: 6rem;
+    margin: 0 auto;
+    border: 1px solid #fff;
+    margin-top: 10rem;
+    cursor: pointer;
+}
+.mainVisual .moreBtn::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 0 1px #fff !important;
+    animation: pulse 2s infinite ease-in-out !important;
+}
+
+.mainVisual .moreBtn .moreBtn_bg{
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+}
+.mainVisual .moreBtn .btnText{
+    width: 100%;
+    font-size: 2rem;
+    line-height: 5.8rem;
+    color: #fff;
+    text-align: center;
+}
 
 
+.mainVisual .nextBtn{cursor: pointer;}
+.mainVisual .nextBtn .nextBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0;}
+.mainVisual .nextBtn .nextBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0}
+.mainVisual .nextBtn .nextBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%; transform: translate(0, -100%);}
+.mainVisual .nextBtn .nextBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%;}
 
 
-
-
-
-/* Page Section Start */
-#pageSection{width: 1200px; height: 100%; margin: 0 auto; display: table;}
-#pageSection .frame{display: table-cell; text-align: center; vertical-align: middle;}
-
-
-#pageSection .subTitle{font-size: 20px; color: #fff;}
-#pageSection .mainTitle{font-size: 80px; color: #fff; margin-top: 60px;}
-
-
-#pageSection .searchSection{width: 66.64%; height: 50px; border: 5px solid #000; margin: 0 auto; background: #fff; border-radius: 8px; margin-top: 115px;}
-#pageSection .searchSection img{width: 26px; height: 26px; float: left; margin-left: 10px; margin-top: 7px;}
-#pageSection .searchSection input{width: calc(100% - 36px); height: 40px; float: right; padding-left: 10px; border: none;}
-#pageSection .recoWord{font-size: 16px; color: #fff; margin-top: 10px;}
-
-
-#pageSection .moreBtn{width: 33.32%; height: 60px; margin: 0 auto; border: 1px solid #fff; margin-top: 60px; cursor: pointer; position: relative;}
-#pageSection .moreBtn .moreBtn_bg{width: 0%; height: 58px; background: rgba(255,255,255,0.2); position: absolute}
-#pageSection .moreBtn .btnText{width: 100%; font-size: 20px; line-height: 58px; color: #fff; text-align: center; position: absolute;}
-
-
-#pageSection .nextBtn{cursor: pointer;}
-#pageSection .nextBtn .nextBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0;}
-#pageSection .nextBtn .nextBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0}
-#pageSection .nextBtn .nextBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%; transform: translate(0, -100%);}
-#pageSection .nextBtn .nextBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%;}
-
-
-#pageSection .prevBtn{cursor: pointer;}
-#pageSection .prevBtn .prevBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
-#pageSection .prevBtn .prevBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
-#pageSection .prevBtn .prevBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%; transform: translate(0, -100%);}
-#pageSection .prevBtn .prevBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%;}
+.mainVisual .prevBtn{cursor: pointer;}
+.mainVisual .prevBtn .prevBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
+.mainVisual .prevBtn .prevBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
+.mainVisual .prevBtn .prevBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%; transform: translate(0, -100%);}
+.mainVisual .prevBtn .prevBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%;}
 /* Page Section End */
 
 
@@ -250,7 +310,7 @@ header.sticky{position: fixed; top:0; left:0; z-index:99; background: rgba(0,0,0
 
 
 /* section part Start */
-section{width: 100%; height: auto;}
+#contentSection{width: 100%; height: auto;}
 #content{width: 1200px; height: auto; margin: 0 auto; display: block;}
 #content::after{content: ""; display: block; clear: both;}
 /* section part End */
@@ -258,8 +318,8 @@ section{width: 100%; height: auto;}
 
 
 /* Top Button part Start */
-section .topBtn{position: fixed; bottom: 40px; right: 40px; width: 40px; height: 40px; background: #333; border-radius: 4px; cursor: pointer; display: none;}
-section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #fff; text-align: center;}
+#contentSection .topBtn{position: fixed; bottom: 40px; right: 40px; width: 40px; height: 40px; background: #333; border-radius: 4px; cursor: pointer; display: none;}
+#contentSection .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #fff; text-align: center;}
 /* Top Button part ENd */
 
 
@@ -300,19 +360,19 @@ section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #ff
     .topBar .frame .mainMenu ul li{display: none;}
     .topBar .frame .mainMenu ul li:last-child{display: block;}
 
-    #pageSection{width: 100%;}
-    #pageSection .mainTitle{font-size: 10vw;}
-    #pageSection .subTitle{display: none;}
-    #pageSection .searchSection{width: 50%;}
-    #pageSection .moreBtn{width: 40%; height: 40px;}
-    #pageSection .moreBtn .moreBtn_bg{height: 38px;}
-    #pageSection .moreBtn .btnText{font-size: 16px; line-height: 38px;}
+    .mainVisual{width: 100%;}
+    .mainVisual .mainTitle{font-size: 10vw;}
+    .mainVisual .subTitle{display: none;}
+    .mainVisual .searchSection{width: 50%;}
+    .mainVisual .moreBtn{width: 40%; height: 40px;}
+    .mainVisual .moreBtn .moreBtn_bg{height: 38px;}
+    .mainVisual .moreBtn .btnText{font-size: 16px; line-height: 38px;}
 
     #footer .frame{width: 100%;}
 }
 
 @media (max-width : 575px){
-    #pageSection .searchSection{width: 80%;}
+    .mainVisual .searchSection{width: 80%;}
 
     #loginSection .loginWindow{width: 90%; height: 9
         0%;}
@@ -332,3 +392,64 @@ section .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #ff
 }
 /* Media Query Part End */
 
+
+/* About Us Page */
+
+.aboutUsFrame{width: 100%; height: auto;}
+.aboutUsFrame .rgstSection{width: 1200px; height: auto; margin: 0 auto; padding: 60px 8.33%;}
+.rgstSection .leftSection{float: left; width: 50%;}
+.rgstSection .leftSection .l_sec_tit{width: 60%; font-size: 40px; font-weight: bold; color: #777; word-break: keep-all; margin-top: 50px;}
+.rgstSection .leftSection .l_sec_txt{width: 80%; font-size: 16px; color: #777; word-break: keep-all; margin-top: 20px;}
+.rgstSection .leftSection .l_sec_btn{width: 160px; height: 40px; background: #444; border-radius: 8px; margin-left: 20%; margin-top: 50px; cursor: pointer;}
+.rgstSection .leftSection .l_sec_btn:hover{background: #777;}
+.rgstSection .leftSection .l_sec_btn p{font-size: 16px; font-weight: bold; color: #fff; line-height: 40px; text-align: center;}
+
+.rgstSection .rightSection{float: right; width: 50%;}
+.rgstSection .rightSection .r_sec_img{width: 100%; height: 580px; background: url(../img/aboutus/img_rgst.jpg) 50% 50% no-repeat; background-size: contain;}
+.aboutUsFrame .rgstSection::after{content: ""; display: block; clear: both;}
+
+
+.secIntroduce{width: 1200px; height: auto; margin: 0 auto; padding: 60px 10px;}
+.secIntroduce .boxTitle{font-size: 40px; color: #777; text-align: center; width: 49.98%; word-break: keep-all; margin: 0 auto;}
+.secIntroduce .contBox{padding: 10px; margin: 20px 0;}
+.secIntroduce .contBox .leftBox{width: calc(58.31% - 20px); float: left; padding: 0 10px;}
+.secIntroduce .contBox .leftBox .l_box_tit{font-size: 20px; font-weight: bold; color: #777; margin: 20px 0;}
+.secIntroduce .contBox .leftBox .l_box_txt{font-size: 16px; color: #777; margin: 10px 0;}
+
+.secIntroduce .contBox .rightBox{width: calc(41.65% - 20px); float: right; padding: 0 10px;}
+.secIntroduce .contBox .rightBox .r_box_img{width: 100%; height: 300px; background-position: 50% 50%; background-size: contain; background-repeat: no-repeat; border-radius: 8px;}
+.secIntroduce .contBox:nth-child(2) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro1.jpg);}
+.secIntroduce .contBox:nth-child(3) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro2.jpg);}
+.secIntroduce .contBox:nth-child(4) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro3.jpg);}
+
+.secIntroduce .contBox:nth-child(3) .leftBox{float: right;}
+.secIntroduce .contBox:nth-child(3) .rightBox{float: left;}
+.secIntroduce .contBox::after{content: ""; display: block; clear: both;}
+
+
+@media (max-width:1199px){
+    #content{width: 100%;}
+    .aboutUsFrame .rgstSection{width: 100%; padding: 60px 10px;}
+    .rgstSection .leftSection .l_sec_tit{width: 100%; text-align: center; padding: 0 20px;}
+    .rgstSection .leftSection .l_sec_txt{width: 100%; text-align: center; padding: 0 20px}
+    .rgstSection .leftSection .l_sec_btn{margin: 50px auto 0;}
+    .secIntroduce{width: 100%;}
+}
+
+@media (max-width:575px){
+    .aboutUsFrame{background: none;}
+
+    .rgstSection .leftSection{float: none; width: 100%;}
+    .rgstSection .leftSection .l_sec_btn{width: 30%; margin: 0 auto; margin-top: 30px;}
+    .rgstSection .leftSection .l_sec_tit{width: 90%; font-size: 30px; margin: 0 auto; text-align: center;}
+    .rgstSection .leftSection .l_sec_txt{width: 90%; font-size: 16px; margin: 0 auto;}
+
+    .rgstSection .rightSection{display: none;}
+
+    .secIntroduce .boxTitle{font-size: 30px; width: 100%;}
+
+    .secIntroduce .contBox .leftBox{width: 100%; float: none; padding: 0;}
+    .secIntroduce .contBox .rightBox{width: 100%; float: none; padding: 0;}
+
+
+}

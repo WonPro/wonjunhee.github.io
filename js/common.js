@@ -1,82 +1,99 @@
 $(document).ready(function(){
-    $("#contentSection").hide();
         
     browserWidth();
     $(window).resize(function(){
         browserWidth();
     });
 
-//Slider Part
-    var $slider = [
-        ["main_00", "Stock Photo", "+ Read More", "Main", "Page", "Everyday take a picture"],
-        ["main_01", "Animal", "+ More View", "01.", "Animal", "Stock Photo"],
-        ["main_02", "Art", "+ More View", "02.", "Art", "Stock Photo"],
-        ["main_03", "Business", "+ More View", "03.", "Business", "Stock Photo"],
-        ["main_04", "Food", "+ More View", "04.", "Food", "Stock Photo"],
-        ["main_05", "Interior", "+ More View", "05.", "Interior", "Stock Photo"],
-        ["main_06", "Nature", "+ More View", "06.", "Nature", "Stock Photo"]
+    //Main Visual Texting
+    const typedText = $('#typedText');
+    const strings = ["Javascript", "CSS", "Photoshop", "Figma"];
+    
+    let currentStrIdx = 0;
+    let currentCharIdx = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentStr = strings[currentStrIdx];
+        if (!isDeleting) {
+            typedText.text(currentStr.substring(0, currentCharIdx + 1));
+            currentCharIdx++;
+        } else {
+            typedText.text(currentStr.substring(0, currentCharIdx - 1));
+            currentCharIdx--;
+        }
+    
+        if (currentCharIdx === currentStr.length && !isDeleting) {
+            isDeleting = true;
+            setTimeout(type, 2400);
+        } else if (currentCharIdx === 0 && isDeleting) {
+            isDeleting = false;
+            currentStrIdx = (currentStrIdx + 1) % strings.length;
+            setTimeout(type, 500);
+        } else {
+            setTimeout(type, 50);
+        }
+    }
+    
+    type();
+
+    //Top Bar Scroll Part
+        $(window).scroll(function(){
+            var cur_scrollTop = $(window).scrollTop();
+            if(cur_scrollTop > 1){
+                $("header").addClass("sticky");
+            }else{
+                $("header").removeClass("sticky");
+            }
+        });
+
+    var currentVideoIndex = 0;
+    var totalVideos = $('.slideVideo').length;
+    
+    // 비디오에 따른 버튼 텍스트와 숫자 배열
+    var buttonInfo = [
+        {text: "Diary", number: "01"},
+        {text: "Laptop", number: "02"},
+        {text: "Beer with LP", number: "03"},
+        {text: "Cherry blossom", number: "04"}
     ];
 
-    $("#mainVisualSlideWrap .slideItem").each(function(index){
-        $(this).css("background-image", "url(img/title/"+$slider[index][0]+".jpg)");
-    });
-
-
-    var $last_slide = $("#mainVisualSlideWrap .slideItem").last();
-    
-    $("#mainVisualSlideWrap").prepend($last_slide).css("margin-left", "-100%");
-    $("#mainVisualSlideWrap .slideItem").eq(1).addClass("view");
-
-    function main_title(){
-        var $now_view = $(".slideItem.view").attr("rel");
-        var $next_view = $(".slideItem.view").next().attr("rel");
-        var $prev_view = $(".slideItem.view").prev().attr("rel");
-        console.log($now_view); 
-        $(".mainTitle").text($slider[$now_view][1]);
-        $(".moreBtn .btnText").text($slider[$now_view][2]);
-        $(".nextBtn .nextBtn_topText").text($slider[$next_view][3]);
-        $(".nextBtn .nextBtn_botText").text($slider[$next_view][4]);
-        $(".prevBtn .prevBtn_topText").text($slider[$prev_view][3]);
-        $(".prevBtn .prevBtn_botText").text($slider[$prev_view][4]);
-        $(".subTitle").text($slider[$now_view][5]);
+    // 다음 비디오로 이동하는 함수
+    function nextVideo() {
+        currentVideoIndex = (currentVideoIndex + 1) % totalVideos;
+        slideVideos();
     }
-    main_title();
 
-//Top Bar Scroll Part
-    $(window).scroll(function(){
-        var cur_scrollTop = $(window).scrollTop();
-        if(cur_scrollTop > 1){
-            $("header").addClass("sticky");
-        }else{
-            $("header").removeClass("sticky");
-        }
+    // 이전 비디오로 이동하는 함수
+    function prevVideo() {
+        currentVideoIndex = (currentVideoIndex - 1 + totalVideos) % totalVideos;
+        slideVideos();
+    }
+
+    // 비디오를 슬라이드하여 표시하는 함수
+    function slideVideos() {
+        var slideDistance = currentVideoIndex * -100 + '%';
+        $('.videoContainer').css('transform', 'translateX(' + slideDistance + ')');
+        // 버튼 텍스트와 숫자 변경
+        $('.prevBtn_botText').text(buttonInfo[(currentVideoIndex - 1 + totalVideos) % totalVideos].text);
+        $('.prevBtn_topText').text(buttonInfo[(currentVideoIndex - 1 + totalVideos) % totalVideos].number);
+        $('.nextBtn_botText').text(buttonInfo[(currentVideoIndex + 1) % totalVideos].text);
+        $('.nextBtn_topText').text(buttonInfo[(currentVideoIndex + 1) % totalVideos].number);
+    }
+
+    // 이전 버튼 클릭 시 이벤트 처리
+    $('.prevBtn').click(function() {
+        prevVideo();
     });
 
-//Nextpage Part
-    $(".nextBtn").click(function(){
-        var $f_slide = $(".headerBg .slide").first();
-
-        $(".headerBg").animate({"margin-left":"-200%"}, 300, function(){
-            $(".headerBg").append($f_slide).css("margin-left", "-100%");
-            $(".headerBg .slide").removeClass("view");    
-            $(".headerBg .slide").eq(1).addClass("view");
-            main_title();
-        });
-        $("#contentSection").hide();
+    // 다음 버튼 클릭 시 이벤트 처리
+    $('.nextBtn').click(function() {
+        nextVideo();
     });
 
-//Previouspage Part
-    $(".prevBtn").click(function(){
-        var $l_slide = $(".headerBg .slide").last();
-
-        $(".headerBg").animate({"margin-left":"0"}, 300, function(){
-            $(".headerBg").prepend($l_slide).css("margin-left", "-100%");
-            $(".headerBg .slide").removeClass("view");    
-            $(".headerBg .slide").eq(1).addClass("view");
-            main_title();
-        });
-        $("#contentSection").hide();
-    });
+    // 페이지 로드 시 초기 버튼 텍스트 설정
+    slideVideos();
+    
 
 //Hamburger Menu Part
     $("#topBar .menu_hamburger").click(function(){
@@ -140,34 +157,8 @@ $(document).ready(function(){
         $(this).removeClass("active")
     });
 
-    $("#pageSection .moreBtn").click(function(){
-        $("section").show();
-        var $now_view = $(".slide.view").attr("rel");
-        var urls = [
-            "aboutus.html",
-            "animal.html",
-            "art.html",
-            "business.html",
-            "food.html",
-            "interior.html",
-            "nature.html"
-        ];
-    
-        if ($now_view >= 0 && $now_view < urls.length) {
-            $.ajax({
-                url: urls[$now_view],
-                method: "GET",
-                success: function(result) {
-                    $("#content").html(result);
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error loading " + urls[$now_view] + ": " + error);
-                }
-            });
-        } else {
-            console.error("Invalid view index: " + $now_view);
-        }
-    
+    $(".mainVisual .moreBtn").click(function(){
+        $("#contentSection").show();
         $("html, body").animate({scrollTop: $("section").offset().top - 100}, 1000);
     });
     
@@ -177,7 +168,7 @@ $(document).ready(function(){
     function browserWidth(){
         var $winWidth = $(this).width();
         // console.log($winWidth);
-        // Page Resizing Animation Part
+        // Reset Page Button
         if($winWidth>575){ 
             if($winWidth>1199){//pc
                 $(".prevBtn_topText").stop().animate({"top":"50%", "left":"8.33%", "trasform":"traslate(0, -100%)"}, 300,);
@@ -250,84 +241,83 @@ $(document).ready(function(){
         }
     }
 
-    
 
     $(".prevBtn").hover(function(){  
         var $winWidth = $(this).width(); 
-        if($winWidth>575){
-            if($winWidth>1199){ // pc
-                $(".prevBtn_topLine").stop().animate({"top":"45%"}, 300, function(){
-                    $(".prevBtn_topLine").stop().animate({"width":"13.33%"}, 300);
-                });
-                $(".prevBtn_botLine").stop().animate({"top":"55%"}, 300, function(){
-                    $(".prevBtn_botLine").stop().animate({"width":"13.33%"}, 300);
-                });
-                $(".prevBtn_topText").stop().animate({"top":"50%", "trasform":"traslate(0, -100%)"}, 300,);
-                $(".prevBtn_botText").stop().animate({"top":"50%"}, 300,);
-            }else{ // tablet
-                $(".prevBtn_topLine").stop().animate({"top":"65%"}, 300, function(){
-                    $(".prevBtn_topLine").stop().animate({"width":"20%"}, 300);
-                });
-                $(".prevBtn_botLine").stop().animate({"top":"75%"}, 300, function(){
-                    $(".prevBtn_botLine").stop().animate({"width":"20%"}, 300);
-                });
-                $(".prevBtn_topText").stop().animate({"top":"70%", "trasform":"traslate(0, -100%)"}, 300,);
-                $(".prevBtn_botText").stop().animate({"top":"70%"}, 300,);
-            }
-        }else{ // mobile
+        
+        if ($winWidth > 1199) { // PC
+            $(".prevBtn_topLine").stop().animate({"top":"45%"}, 300, function(){
+                $(".prevBtn_topLine").stop().animate({"width":"13.33%"}, 300);
+            });
+            $(".prevBtn_botLine").stop().animate({"top":"55%"}, 300, function(){
+                $(".prevBtn_botLine").stop().animate({"width":"13.33%"}, 300);
+            });
+            $(".prevBtn_topText").stop().animate({"top":"50%", "transform":"translate(0, -100%)"}, 300);
+            $(".prevBtn_botText").stop().animate({"top":"50%"}, 300);
+        }
+        else if ($winWidth > 575) { // 테블릿
+            $(".prevBtn_topLine").stop().animate({"top":"65%"}, 300, function(){
+                $(".prevBtn_topLine").stop().animate({"width":"20%"}, 300);
+            });
+            $(".prevBtn_botLine").stop().animate({"top":"75%"}, 300, function(){
+                $(".prevBtn_botLine").stop().animate({"width":"20%"}, 300);
+            });
+            $(".prevBtn_topText").stop().animate({"top":"70%", "transform":"translate(0, -100%)"}, 300);
+            $(".prevBtn_botText").stop().animate({"top":"70%"}, 300);
+        } 
+        else { // 모바일
             $(".prevBtn_topLine").stop().animate({"top":"85%"}, 300, function(){
                 $(".prevBtn_topLine").stop().animate({"width":"20%"}, 300);
             });
             $(".prevBtn_botLine").stop().animate({"top":"95%"}, 300, function(){
                 $(".prevBtn_botLine").stop().animate({"width":"20%"}, 300);
             });
-            $(".prevBtn_topText").stop().animate({"top":"90%", "trasform":"traslate(0, -100%)"}, 300,);
-            $(".prevBtn_botText").stop().animate({"top":"90%"}, 300,);
+            $(".prevBtn_topText").stop().animate({"top":"90%", "transform":"translate(0, -100%)"}, 300);
+            $(".prevBtn_botText").stop().animate({"top":"90%"}, 300);
         }
     }, function(){
         browserWidth();
     });
-
+    
     $(".nextBtn").hover(function(){
         var $winWidth = $(this).width();   
-        if($winWidth>575){
-            if($winWidth>1199){ // pc
-                $(".nextBtn_topLine").stop().animate({"top":"45%"}, 300, function(){
-                    $(".nextBtn_topLine").stop().animate({"width":"13.33%"}, 300);
-                });
-                $(".nextBtn_botLine").stop().animate({"top":"55%"}, 300, function(){
-                    $(".nextBtn_botLine").stop().animate({"width":"13.33%"}, 300);
-                });
-                $(".nextBtn_topText").stop().animate({"top":"50%", "trasform":"traslate(0, -100%)"}, 300,);
-                $(".nextBtn_botText").stop().animate({"top":"50%"}, 300,);
-            }else{ // tablet
-                $(".nextBtn_topLine").stop().animate({"top":"65%"}, 300, function(){
-                    $(".nextBtn_topLine").stop().animate({"width":"20%"}, 300);
-                });
-                $(".nextBtn_botLine").stop().animate({"top":"75%"}, 300, function(){
-                    $(".nextBtn_botLine").stop().animate({"width":"20%"}, 300);
-                });
-                $(".nextBtn_topText").stop().animate({"top":"70%", "trasform":"traslate(0, -100%)"}, 300,);
-                $(".nextBtn_botText").stop().animate({"top":"70%"}, 300,);
-            }
-        }else{ // mobile
+        if ($winWidth > 1199) { // PC
+            $(".nextBtn_topLine").stop().animate({"top":"45%"}, 300, function(){
+                $(".nextBtn_topLine").stop().animate({"width":"13.33%"}, 300);
+            });
+            $(".nextBtn_botLine").stop().animate({"top":"55%"}, 300, function(){
+                $(".nextBtn_botLine").stop().animate({"width":"13.33%"}, 300);
+            });
+            $(".nextBtn_topText").stop().animate({"top":"50%", "transform":"translate(0, -100%)"}, 300);
+            $(".nextBtn_botText").stop().animate({"top":"50%"}, 300);
+        } else if ($winWidth > 575) { // 테블릿
+            $(".nextBtn_topLine").stop().animate({"top":"65%"}, 300, function(){
+                $(".nextBtn_topLine").stop().animate({"width":"20%"}, 300);
+            });
+            $(".nextBtn_botLine").stop().animate({"top":"75%"}, 300, function(){
+                $(".nextBtn_botLine").stop().animate({"width":"20%"}, 300);
+            });
+            $(".nextBtn_topText").stop().animate({"top":"70%", "transform":"translate(0, -100%)"}, 300);
+            $(".nextBtn_botText").stop().animate({"top":"70%"}, 300);
+        } else { // 모바일
             $(".nextBtn_topLine").stop().animate({"top":"85%"}, 300, function(){
                 $(".nextBtn_topLine").stop().animate({"width":"20%"}, 300);
             });
             $(".nextBtn_botLine").stop().animate({"top":"95%"}, 300, function(){
                 $(".nextBtn_botLine").stop().animate({"width":"20%"}, 300);
             });
-            $(".nextBtn_topText").stop().animate({"top":"90%", "trasform":"traslate(0, -100%)"}, 300,);
-            $(".nextBtn_botText").stop().animate({"top":"90%"}, 300,);
+            $(".nextBtn_topText").stop().animate({"top":"90%", "transform":"translate(0, -100%)"}, 300);
+            $(".nextBtn_botText").stop().animate({"top":"90%"}, 300);
         }
     }, function(){
         browserWidth();
     });
+    
 
 //Top Button Part
     $(window).scroll(function(){
         var $nowScroll = $(this).scrollTop();
-        var $target = $("section").offset().top-200;
+        var $target = $("#contentSection").offset().top-200;
 
         if($nowScroll>$target){
             $(".topBtn").slideDown(500);
