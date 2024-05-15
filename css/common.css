@@ -16,6 +16,7 @@ a{text-decoration: none;}
 .link:hover{opacity: 1;}
 h2.sectionTitle{font-size: 40px; line-height: 60px; color: #333; text-align: center; padding: 60px 0; border-bottom: 1px solid #777;}
 
+body.modal-open {overflow: hidden;}
 
 
 /* Slider Part Start */

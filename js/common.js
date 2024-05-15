@@ -6,6 +6,13 @@ $(document).ready(function(){
         browserWidth();
     });
 
+    // 모달을 열 때
+    document.body.classList.add('modal-open');
+
+    // 모달을 닫을 때
+    document.body.classList.remove('modal-open');
+
+
 //Slider Part
     var $slider = [
         ["main_00", "Stock Photo", "+ Read More", "Main", "Page", "Everyday take a picture"],
