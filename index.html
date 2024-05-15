@@ -6,9 +6,6 @@
     <title>Web Design Portfolio</title>
     <link rel="shorticon icon" href="img/icon/img_favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/common.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/07af8a896d.js" crossorigin="anonymous"></script>
-    <script src="js/common.js"></script>
 </head>
 <body>
     <header>
@@ -31,7 +28,7 @@
 
     <div class="mainVisual">
         <div class="videoWrap">
-            <div class="videoContainer">            
+            <div class="videoContainer">
                 <div class="slideVideo">
                     <video loop="" playsinline="" autoplay="" muted="" webkit-playsinline="" tabindex="-1" aria-hidden="true" class="bgv">
                         <source src="/video/bgv1.mp4">
@@ -51,7 +48,7 @@
                     <video loop="" playsinline="" autoplay="" muted="" webkit-playsinline="" tabindex="-1" aria-hidden="true" class="bgv">
                         <source src="/video/bgv4.mp4">
                     </video>
-                </div>            
+                </div>     
             </div>
             <div class="blueScreen"></div>
         </div>
@@ -84,55 +81,53 @@
         </div>        
     </div>
 
-    <section id="contentSection">
-        <div id="mainContent">
-            <div class="aboutUsFrame">
-                <h2 class="sectionTitle">About Me</h2>
-                <div class="rgstSection">
-                    <div class="leftSection">
-                        <p class="l_sec_tit">Photo for everyone</p>
-                        <p class="l_sec_txt">Over 1 million free high-resolution images brought toyou by the world’s most generous community of photographers.</p>
-                        <div class="joinBtn l_sec_btn"><p>REGISTER</p></div>
+    <div id="contentSection">
+        <section class="aboutMe contentSection">
+            <h2 class="sectionTitle">About Me</h2>
+            <div class="rgstSection">
+                <div class="leftSection">
+                    <p class="l_sec_tit">Photo for everyone</p>
+                    <p class="l_sec_txt">Over 1 million free high-resolution images brought toyou by the world’s most generous community of photographers.</p>
+                    <div class="joinBtn l_sec_btn"><p>REGISTER</p></div>
+                </div>
+                <div class="rightSection">
+                    <div class="r_sec_img"></div>
+                </div>
+            </div>
+        
+            <div class="secIntroduce">
+                <p class="boxTitle">Stock Photo is internet’s source of freely usable images.</p>
+                <div class="contBox">
+                    <div class="leftBox">
+                        <p class="l_box_tit">Over one million curated photos</p>
+                        <p class="l_box_txt">We hand-select every photo and accept only the best, so that no matter what you need—you’ll find exactly what you’re looking for on Stock Photo.</p>
                     </div>
-                    <div class="rightSection">
-                        <div class="r_sec_img"></div>
+                    <div class="rightBox">
+                        <div class="r_box_img"></div>
                     </div>
                 </div>
-            
-                <div class="secIntroduce">
-                    <p class="boxTitle">Stock Photo is internet’s source of freely usable images.</p>
-                    <div class="contBox">
-                        <div class="leftBox">
-                            <p class="l_box_tit">Over one million curated photos</p>
-                            <p class="l_box_txt">We hand-select every photo and accept only the best, so that no matter what you need—you’ll find exactly what you’re looking for on Stock Photo.</p>
-                        </div>
-                        <div class="rightBox">
-                            <div class="r_box_img"></div>
-                        </div>
+        
+                <div class="contBox">
+                    <div class="leftBox">
+                        <p class="l_box_tit">A community of 157,866 photographersated photos</p>
+                        <p class="l_box_txt">Stock Photo is home to a growing community of photographers—from hobbyists, professionals, emerging brands and everyone in between.</p>
                     </div>
-            
-                    <div class="contBox">
-                        <div class="leftBox">
-                            <p class="l_box_tit">A community of 157,866 photographersated photos</p>
-                            <p class="l_box_txt">Stock Photo is home to a growing community of photographers—from hobbyists, professionals, emerging brands and everyone in between.</p>
-                        </div>
-                        <div class="rightBox">
-                            <div class="r_box_img"></div>
-                        </div>
+                    <div class="rightBox">
+                        <div class="r_box_img"></div>
                     </div>
-            
-                    <div class="contBox">
-                        <div class="leftBox">
-                            <p class="l_box_tit">Fuelling your favourite platforms</p>
-                            <p class="l_box_txt">With partners like BuzzFeed, Squarespace and Trello being powered by our API, the Stock Photo library is more widely accessible than ever.</p>
-                        </div>
-                        <div class="rightBox">
-                            <div class="r_box_img"></div>
-                        </div>
+                </div>
+        
+                <div class="contBox">
+                    <div class="leftBox">
+                        <p class="l_box_tit">Fuelling your favourite platforms</p>
+                        <p class="l_box_txt">With partners like BuzzFeed, Squarespace and Trello being powered by our API, the Stock Photo library is more widely accessible than ever.</p>
+                    </div>
+                    <div class="rightBox">
+                        <div class="r_box_img"></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <div class="imgPopUpWindow">
             <div class="blackBg"></div>
@@ -182,6 +177,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.5/jarallax.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            jarallax(document.querySelectorAll('.jarallax'));
+        });
+    </script>
 </body>
