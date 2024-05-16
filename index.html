@@ -2,29 +2,33 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Design Portfolio</title>
     <link rel="shorticon icon" href="img/icon/img_favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/common.css">
 </head>
-<body>
+<body id="body">
     <header>
         <nav class="topBar">
             <ul class="mainMenu">
-                <li><a class="link" href="">Career</a></li>
-                <li><a class="link" href="">Portfolio</a></li>
+                <li><a class="link" href="#portfolio">Portfolio</a></li>
+                <li>
+                    <a class="logoLink" href="#body" title="Web Desiner's Portfolio">
+                        <h1 class="logo"></h1>
+                    </a>
+                </li>
+                <li><a class="link" href="#contact">Contact</a></li>
+                
                 <li class="mobileMenu"><a class="menu_hamburger link" href="">
                     <span class="f_hamburger"></span>
                     <span class="s_hamburger"></span>
                     <span class="t_hamburger"></span>
                 </a></li>
             </ul>
-            <a class="logoLink" href="index.html" title="Web Desiner's Portfolio">
-                <h1 class="logo"></h1>
-            </a>
-            <a class="link" href="">Contact</a>
         </nav>
     </header>
+    
 
     <div class="mainVisual">
         <div class="videoWrap">
@@ -82,109 +86,130 @@
     </div>
 
     <div id="contentSection">
-        <section class="aboutMe contentSection">
-            <h2 class="sectionTitle">About Me</h2>
-            <div class="rgstSection">
-                <div class="leftSection">
-                    <p class="l_sec_tit">Photo for everyone</p>
-                    <p class="l_sec_txt">Over 1 million free high-resolution images brought toyou by the world’s most generous community of photographers.</p>
-                    <div class="joinBtn l_sec_btn"><p>REGISTER</p></div>
-                </div>
-                <div class="rightSection">
-                    <div class="r_sec_img"></div>
-                </div>
+        <section id="portfolio" class="contentSection">
+            <h2 class="sectionTitle">Portfolio</h2>
+            <div class="tabs">
+                <div class="tab active" data-category="all">ALL</div>
+                <div class="tab" data-category="homepage">WEB SITE</div>
+                <div class="tab" data-category="detail">Product</div>
+                <div class="tab" data-category="etc">The others</div>
             </div>
-        
-            <div class="secIntroduce">
-                <p class="boxTitle">Stock Photo is internet’s source of freely usable images.</p>
-                <div class="contBox">
-                    <div class="leftBox">
-                        <p class="l_box_tit">Over one million curated photos</p>
-                        <p class="l_box_txt">We hand-select every photo and accept only the best, so that no matter what you need—you’ll find exactly what you’re looking for on Stock Photo.</p>
-                    </div>
-                    <div class="rightBox">
-                        <div class="r_box_img"></div>
-                    </div>
-                </div>
-        
-                <div class="contBox">
-                    <div class="leftBox">
-                        <p class="l_box_tit">A community of 157,866 photographersated photos</p>
-                        <p class="l_box_txt">Stock Photo is home to a growing community of photographers—from hobbyists, professionals, emerging brands and everyone in between.</p>
-                    </div>
-                    <div class="rightBox">
-                        <div class="r_box_img"></div>
-                    </div>
-                </div>
-        
-                <div class="contBox">
-                    <div class="leftBox">
-                        <p class="l_box_tit">Fuelling your favourite platforms</p>
-                        <p class="l_box_txt">With partners like BuzzFeed, Squarespace and Trello being powered by our API, the Stock Photo library is more widely accessible than ever.</p>
-                    </div>
-                    <div class="rightBox">
-                        <div class="r_box_img"></div>
-                    </div>
-                </div>
+            
+            <div class="gallery">
+                <!-- .card 엘리먼트들은 자바스크립트로 동적으로 생성됩니다. -->
             </div>
         </section>
 
-        <div class="imgPopUpWindow">
-            <div class="blackBg"></div>
-            <div class="imgPopup">
-                <span class="close_btn">×</span>
-                <div class="popupImg"></div>
+        <section id="contact" class="contentSection">
+            <h2 class="sectionTitle">Contact</h2>
+            <div class="profile">
+                <div class="texting">
+                    <h3 class="title">
+                        Hello. I'm JunHee Won
+                    </h3>
+                    <p class="context">&nbsp;&nbsp;I have been working as a web designer for over three years, and I am an interactive talent who always values communication.</p>
+                    <p class="context name">Name : 원준희</p>
+                    <p class="context">Tel : 010.4564.7911</p>
+                    <p class="context">E-mail : wonjunhee.com@gmail.com</p>
+                </div>
+                <img src="/img/mimoticon.jpg" alt="">
             </div>
-        </div>        
+        </section>
+
+        <!-- 모달 창 -->
+        <div class="imgPopUpWindow">
+            <div class="modal">
+                <button class="closeBtn">&times;</button>
+                <div class="imgWrap">
+                    <img id="popupImg" src="">
+                </div>
+            </div>
+        </div>       
 
         <div class="topBtn">
             <i class="fas fa-arrow-alt-circle-up"></i>
         </div>
-
-        <div class="clear"></div>
         
         <div id="footer">
             <div class="frame">
-                <div class="secFrame">
-                    <div class="secLeft">
-                        <ul>
-                            <li><a class="link" href="">Privacy Polisy</a></li>
-                            <li><a class="link" href="">Terms</a></li>
-                            <li><a class="link" href="">Security</a></li>
-                        </ul>
-                    </div>
-                    <div class="secRight">
-                        <ul>
-                            <li><a class="link" href="">
-                                <i class="fab fa-instagram-square" alt="follow instargram"></i>
-                            </a></li>
-                            <li><a class="link" href="">
-                                <i class="fab fa-twitter-square" alt="follow twitter"></i>
-                            </a></li>
-                            <li><a class="link" href="">
-                                <i class="fab fa-youtube-square" alt="subscript youtube"></i>
-                            </a></li>
-                            <li><a class="link" href="">
-                                <i class="fab fa-facebook-square" alt="fallow follow facebook"></i>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
                 <div class="footerText">
-                    <h3>Stock PhoTo</h3>
-                    <p>Beautiful, free images gifted by the world’s most generous community of photographers. Better than any royalty free or stock photos.</p>
+                    <h3 class="text-gradient">Web Design Portfolio</h3>
+                    <p>I will constantly research and strive to create UI/UX that is creative, novel, and can satisfy users.</p>
                 </div>
             </div>
         </div>
+        <div id="player"></div>
+        <button id="toggleButton">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="fa-compact-disc fa-spin fa-2x">
+                <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zM88 256H56c0-105.9 86.1-192 192-192v32c-88.2 0-160 71.8-160 160zm160 96c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96zm0-128c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32z" fill="url(#icon-gradient)"></path>
+                <defs>
+                    <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3655ff;" />
+                        <stop offset="25%" style="stop-color:#3655ff;" />
+                        <stop offset="50%" style="stop-color:#c26bf8;" />
+                        <stop offset="75%" style="stop-color:#f65660;" />
+                        <stop offset="100%" style="stop-color:#f65660;" />
+                    </linearGradient>
+                </defs>
+            </svg>            
+        </button>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/07af8a896d.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.5/jarallax.min.js"></script>
     <script src="js/common.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             jarallax(document.querySelectorAll('.jarallax'));
+        });
+        
+        // IFrame Player API를 비동기로 로드
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // YouTube Player 변수 선언
+        var player;
+        var isPlaying = true; // 음악 재생 상태 변수
+
+        // API가 준비되면 플레이어를 생성
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', // 비디오 높이를 0으로 설정하여 화면 숨기기
+                width: '0',  // 비디오 너비를 0으로 설정하여 화면 숨기기
+                videoId: 'VpquwB4fLng', // 동영상 ID
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // 플레이어가 준비되면 자동 재생 및 볼륨 설정
+        function onPlayerReady(event) {
+            event.target.playVideo();
+            event.target.unMute(); // 음소거 해제
+            event.target.setVolume(30); // 볼륨을 50%로 설정
+        }
+
+        // 버튼 클릭 이벤트 리스너 추가
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var icon = document.querySelector('#toggleButton svg');
+            if (isPlaying) {
+                // 정지 상태로 변경하고 아이콘 회전 제거
+                // console.log('음악 정지');
+                icon.classList.remove('fa-spin');
+                // 음악 일시 정지
+                player.pauseVideo();
+            } else {
+                // 재생 상태로 변경하고 아이콘 회전 추가
+                // console.log('음악 재생');
+                icon.classList.add('fa-spin');
+                // 음악 재생
+                player.playVideo();
+            }
+            isPlaying = !isPlaying;
         });
     </script>
 </body>

@@ -1,30 +1,34 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css?family=Orbitron:400,700|Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-
+/* Common CSS Start */
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: "Poetsen One", sans-serif;
+    font-family: "Poetsen One", "Jua", sans-serif;
     font-size: 10px;
 }
 html, body{margin: 0; padding: 0;}
 header, section, article, nav, footer{margin: 0; padding: 0; display: block;}
-h1, h2, h3, h4, h5, h6{margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6,
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span{
+    margin: 0;
+    padding: 0;
+    font-family: "Courgette", cursive;
+}
 p, i{margin: 0; padding: 0;}
 ul, ol{list-style: none; margin: 0; padding: 0;}
 a{text-decoration: none;}
-.link{opacity: 0.7; transition: opacity 0.3;}
-.link:hover{opacity: 1;}
 
-.contentSection{
-    width: 96rem;
-    margin: 0 auto;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+.link{
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+.link:hover{
+    opacity: 1;
 }
 
 .sectionTitle{
@@ -34,20 +38,61 @@ a{text-decoration: none;}
 }
 
 body.modal-open {overflow: hidden;}
-body{overflow: overlay;}
-body::-webkit-scrollbar {
-    width: 8px;  /* 스크롤바의 너비 */
-}
 
-body::-webkit-scrollbar-thumb {
-    height: 30%; /* 스크롤바의 길이 */
-    background: rgb(0,0,80); /* 스크롤바의 색상 */    
+*::-webkit-scrollbar {
+    width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: rgb(0,0,80);
     border-radius: 10px;
 }
-
-body::-webkit-scrollbar-track {
-    background: rgba(255,255,255,1);  /*스크롤바 뒷 배경 색상*/
+*::-webkit-scrollbar-track {
+    background: #777;
 }
+
+.text-gradient {
+    padding: 10px 5px 10px 10px;
+    margin: 0;
+    line-height: 1;
+    -webkit-animation: 5s ease-out infinite textAnim;
+    animation: 5s ease-out infinite textAnim;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 250% 500%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    color: transparent;
+}
+@keyframes textAnim{
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.fa-compact-disc {
+    width: 3.3rem;
+    height: 3.3rem;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.fa-spin {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Common CSS Start */
+
+
 
 /* Top Menu Bar Start */
 header{
@@ -55,36 +100,35 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 999;
     transition: background-color 1.5s;
 }
 header.sticky{
     background-color: rgba(0,0,0,0.7);
 }
-.topBar .mobileMenu{display: none;}
-
 .topBar{
-    width: 96rem;
+    width: 76.8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 2rem 1rem;
-}
-
-.topBar .logoLink .logo{
-    width: 16.8rem;
-    height: 6.8rem;
-    display: block;
-    background: url(../img/icon/img_logo.png) 50% 50% no-repeat;
-    background-size: contain;
+    padding: 1.6rem 1rem;
 }
 
 .topBar .mainMenu{
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
-.topBar .link{
+.topBar .mainMenu li{
+    display: flex;
+    align-items: center;
+}
+.topBar .mainMenu li a{
+    display: flex;
+    align-items: center;
+}
+.topBar .mainMenu .link{
     position: relative;
     font-size: 1.6rem;
     font-weight: bold;
@@ -92,17 +136,25 @@ header.sticky{
     margin: 0 2rem;
 }
 
-.topBar .link::after{
+.topBar .mainMenu .link::after{
     content: '';
-    position: absolute;
-    top: 8px;
-    right: -18px;
     width: 0;
     height: 0;
+    margin-left: 5px;
+    margin-top: 5px;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 9px solid #fff;
     border-radius: 2px;
+}
+.topBar .mainMenu .logoLink .logo{
+    width: 16.8rem;
+    height: 6.8rem;
+    background: url(../img/icon/img_logo.png) 50% 50% no-repeat;
+    background-size: contain;
+}
+.topBar .mainMenu .mobileMenu{
+    display: none;
 }
 
 
@@ -146,7 +198,6 @@ header.sticky{
     height: 100%;
     object-fit: cover; /* 비디오가 화면에 꽉 차게 설정 */
 }
-
 .videoWrap .blueScreen{
     position: absolute;
     top: 0;
@@ -156,8 +207,6 @@ header.sticky{
     background-color: rgba(0,0,80,0.4);
 }
 
-.videoContainer .slideVideo{width: calc(100% / 4); height: 100%; float: left;}
-header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0;}
 /* Slider Part End */
 
 .titleWrap{
@@ -167,10 +216,10 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
     top: 0;
     padding-top: 35vh;
     text-align: center;
+    overflow: hidden;
 }
 .specialHeading,
 .specialHeading span{
-    font-family: "Lily Script One", system-ui;
     font-weight: 400;
     letter-spacing: -1px;
     font-size: 7rem;
@@ -179,11 +228,10 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
 .specialHeading #typedText{
     color: #dd9f01;
 }
-.cursor {
+.cursor{
     font-family: sans-serif !important;
     animation: blink 1s infinite;
 }
-
 @keyframes blink {
     0%, 25%, 75%, 100% {
         opacity: 1;
@@ -226,6 +274,29 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
     left: 0;
 }
 /* Slider Part End */
+
+
+
+/* Main Visual Part Start */
+.mainVisual .moreBtn{
+    position: relative;
+    width: 30rem;
+    height: 6rem;
+    margin: 20rem auto 0;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.mainVisual .moreBtn::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 0 1px #fff !important;
+    animation: pulse 2s infinite ease-in-out !important;
+}
 @keyframes pulse{
     0% {
         transform: scale(1);
@@ -239,27 +310,6 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
         transform: scale(1.3);
         opacity: 0;
     }
-}
-
-.mainVisual .moreBtn{
-    position: relative;
-    width: 30rem;
-    height: 6rem;
-    margin: 0 auto;
-    border: 1px solid #fff;
-    margin-top: 10rem;
-    cursor: pointer;
-}
-.mainVisual .moreBtn::before{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: 0 0 0 1px #fff !important;
-    animation: pulse 2s infinite ease-in-out !important;
 }
 
 .mainVisual .moreBtn .moreBtn_bg{
@@ -276,206 +326,315 @@ header .headerDarkBg{width: 100%; height: 100vh; background-color: rgba(0,0,0,0.
     text-align: center;
 }
 
+.mainVisual .prevBtn,
+.mainVisual .nextBtn{
+    cursor: pointer;
+}
+.mainVisual .nextBtn .nextBtn_topLine,
+.mainVisual .nextBtn .nextBtn_botLine{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 8.33%;
+    height: 1px;
+    background: #fff;
+}
+.mainVisual .nextBtn .nextBtn_topText{
+    transform: translate(0, -100%);
+}
+.mainVisual .nextBtn .nextBtn_topText,
+.mainVisual .nextBtn .nextBtn_botText{
+    position: absolute;
+    top: 50%;
+    right: 8.33%;
+    font-size: 20px;
+    color: #fff;
+}
 
-.mainVisual .nextBtn{cursor: pointer;}
-.mainVisual .nextBtn .nextBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0;}
-.mainVisual .nextBtn .nextBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; right: 0}
-.mainVisual .nextBtn .nextBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%; transform: translate(0, -100%);}
-.mainVisual .nextBtn .nextBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; right: 8.33%;}
-
-
-.mainVisual .prevBtn{cursor: pointer;}
-.mainVisual .prevBtn .prevBtn_topLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
-.mainVisual .prevBtn .prevBtn_botLine{width: 8.33%; height: 1px; background: #fff; position: absolute; top: 50%; left: 0;}
-.mainVisual .prevBtn .prevBtn_topText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%; transform: translate(0, -100%);}
-.mainVisual .prevBtn .prevBtn_botText{font-size: 20px; color: #fff; position: absolute; top: 50%; left: 8.33%;}
-/* Page Section End */
-
-
-
-/* Login Window Start */
-#loginSection{width: 100%; height: 100vh; position: fixed; top: 0; left: 0; display: none; z-index: 9991;}
-#loginSection .darkBg{width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
-#loginSection .loginWindow{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 530px; height: 650px; border-radius: 4px; background: #fff;}
-#loginSection .loginWindow .closeBtn{font-size: 40px; margin: 0; color: #fff; line-height: 1; position: absolute; top: -50px; right: -40px; cursor: pointer;}
-
-#loginSection .loginWindow h3{margin-top: 70px; font-size: 25px; line-height: 31px; color: #777; text-align: center;}
-#loginSection .loginWindow p{margin-top: 20px; font-size: 16px; line-height: 1; color: #777; text-align: center;}
-#loginSection .loginWindow p>a{display: block; font-size: 16px; color: #000; line-height: 1; text-align: center;}
-
-#loginSection .loginWindow .loginInputBox{width: 50%; margin: 60px auto;}
-#loginSection .loginWindow .loginInputBox label{display: block; font-size: 16px; color: #777; margin-top: 20px; padding-left: 10px;}
-#loginSection .loginWindow .loginInputBox input{width: 100%; height: 30px; margin-top: 10px; padding-left: 10px; border: 1px solid #777; border-radius: 4px;}
-
-#loginSection #loginBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
-#loginSection #loginBtn:hover{background: #333;}
-#loginSection #loginBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
-/* Login Window End */
-
-
-
-/* Join Window Start */
-#joinSection{width: 100%; height: 100vh; position: fixed; top: 0; left: 0; display: none; z-index: 999;}
-#joinSection .darkBg{width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);}
-#joinSection .joinWindow{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 530px; height: 650px; border-radius: 4px; background: #fff;}
-#joinSection .joinWindow .closeBtn{font-size: 40px; margin: 0; color: #fff; line-height: 1; position: absolute; top: -50px; right: -40px; cursor: pointer;}
-
-#joinSection .joinWindow h3{margin-top: 70px; font-size: 25px; line-height: 31px; color: #777; text-align: center;}
-#joinSection .joinWindow p{margin-top: 20px; font-size: 16px; line-height: 1; color: #777; text-align: center;}
-#joinSection .joinWindow p>a{display: block; font-size: 16px; color: #000; line-height: 1; text-align: center;}
-
-#joinSection .joinWindow .joinInputBox{width: 50%; margin: 60px auto;}
-#joinSection .joinWindow .joinInputBox label{display: block; font-size: 16px; color: #777; margin-top: 10px; padding-left: 10px;}
-#joinSection .joinWindow .joinInputBox input{width: 100%; height: 30px; margin-top: 5px; padding-left: 10px; border: 1px solid #777; border-radius: 4px;}
-
-#joinSection #joinBtn{margin: 90px auto 0; width: 160px; height: 30px; background: #777; border-radius: 4px; cursor: pointer;}
-#joinSection #joinBtn:hover{background: #333;}
-#joinSection #joinBtn>p{display: block; font-size: 20px; color: #fff; line-height: 30px;}
-/* Join Window End */
-
+.mainVisual .prevBtn .prevBtn_topLine,
+.mainVisual .prevBtn .prevBtn_botLine{
+    width: 8.33%;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.mainVisual .prevBtn .prevBtn_topText{
+    transform: translate(0, -100%);
+}
+.mainVisual .prevBtn .prevBtn_topText,
+.mainVisual .prevBtn .prevBtn_botText{
+    position: absolute;
+    top: 50%;
+    left: 8.33%;
+    font-size: 20px;
+    color: #fff;
+}
+/* Main Visual Part Start */
 
 
 /* section part Start */
-#contentSection{width: 100%; height: auto;}
-#content{width: 1200px; height: auto; margin: 0 auto; display: block;}
-#content::after{content: ""; display: block; clear: both;}
-/* section part End */
+.contentSection{
+    width: 76.8rem;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    background-image: url(../img/img_contentBackground.jpg);
+}
 
+    /* Portfolio section part Start */
+    .tabs {
+        display: flex;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .tab {
+        padding: 1rem 2rem;
+        flex: 1 0 auto;;
+        border-radius: 5px 5px 0 0;
+        background-color: #f9f9f9;
+        font-size: 1.6rem;
+        text-align: center;
+        cursor: pointer;
+    }
+    .tab.active {
+        background-color: #ffd0e0;
+    }
+
+    .gallery {
+        padding: 3rem 2rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        border-radius: 5px 5px 0 0;
+        background-color: #ffd0e0;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-8px) !important;
+        border-color: transparent;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+    }
+
+    .card .card-image {
+        width: 100%;
+        height: 25rem;
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        cursor: pointer;
+    }
+    .card .description {
+        padding: 1rem;
+        background-color: #f5f5f5;
+        font-size: 1.6rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+    /* Portfolio section part End */
+
+
+
+    /* Contact section part Start */
+    #contact{
+        padding-bottom: 12rem;
+    }
+
+    .profile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .profile .texting{
+        width: 48rem;
+    }
+    .profile .title {
+        margin-bottom: 2rem;
+        font-family: "Poetsen One", "Jua", sans-serif;
+        font-size: 4rem;
+        color: #555;
+    }
+    .profile .context {
+        font-size: 1.6rem;
+        line-height: 1.6;
+        color: #888;
+    }
+
+    .profile .context.name{
+        margin-top: 3rem;
+    }
+
+    .profile img{
+        width: 24rem;
+    }
+    /* Contact section part End */
+/* Section part End */
 
 
 /* Top Button part Start */
-#contentSection .topBtn{position: fixed; bottom: 40px; right: 40px; width: 40px; height: 40px; background: #333; border-radius: 4px; cursor: pointer; display: none;}
-#contentSection .topBtn i{display: block; font-size: 30px; line-height: 40px; color: #fff; text-align: center;}
-/* Top Button part ENd */
+.topBtn{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    background: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+.topBtn i{
+    display: block;
+    font-size: 30px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+}
+/* Top Button part End */
 
 
 
 /* footer Part Start */
-#footer{width: 100%; height: auto;}
-#footer .frame{width: 1200px; height: auto; margin: 0 auto; padding: 40px 10px 60px; border-top: 1px solid #777;}
-#footer .frame .secFrame:after{content: ""; display: block; clear: both;}
+#footer .frame{
+    width: 76.8rem;
+    margin: 0 auto;
+    padding: 4rem 1rem 6rem;
+    border-top: 1px solid #777;
+}
 
-#footer .frame .secLeft ul li{float: left; margin: 0 10px}
-#footer .frame .secLeft ul li a{display: block; font-size: 16px; line-height: 40px; color: #333;}
+#footer .frame .footerText{
+    margin-top: 2rem;
+    text-align: center;
+}
+#footer .frame .footerText h3{
+    font-size: 2.4rem;
+    color: #333;
+}
+#footer .frame .footerText p{
+    padding-top: 10px;
+    font-size: 1.4rem;
+    color: #777;
+}
 
-#footer .frame .secRight{float: right;}
-#footer .frame .secRight ul li{float: left; margin: 0 10px;}
-#footer .frame .secRight ul li a{display: block; font-size: 30px; line-height: 40px; color: #333;}
-
-#footer .frame .footerText{text-align: center;}
-#footer .frame .footerText h3{color: #333;}
-#footer .frame .footerText p{padding-top: 10px; font-size: 13px; color: #777;}
+#toggleButton{
+    position: fixed;
+    bottom: 4rem;
+    left: 4rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 /* footer Part End */
 
 
 
-/* Sub Section Fullscreen PopUp Part Start*/
-.imgPopUpWindow{position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -3; opacity: 0; display: none; transition: opacity 0.5s;}
-.imgPopUpWindow.active{opacity: 1; display: block; z-index: 999;}
-.imgPopUpWindow .blackBg{position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1;}
-.imgPopUpWindow .imgPopup{position: absolute; width: 85%; height: 85%; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 8px; background-color: #fff; padding: 20px; box-shadow: 0 0 8px #000; z-index: 2;}
-.imgPopUpWindow .imgPopup .close_btn{font-size: 40px; margin: 0; color: #fff; line-height: 1; position: absolute; top: -50px; right: -40px; cursor: pointer;}
-.imgPopUpWindow .imgPopup .popupImg{width: 100%; height: 100%; background-position: 50% 50%; background-repeat: no-repeat; background-size: contain;}
+/* Modal Pop Up Part Start*/
+.imgPopUpWindow{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    background-color: rgba(0,0,0,0.7);
+}
+.imgPopUpWindow.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.imgPopUpWindow .modal{
+    position: relative;
+    width: 56rem;
+    height: 85%;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    background-color: #777;
+    text-align: center;
+}
+.imgPopUpWindow .modal .closeBtn{
+    position: absolute;
+    top: 0;
+    right: -8rem;
+    background-color: transparent;
+    border: none;
+    font-size: 4rem;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+}
+.imgPopUpWindow .modal .imgWrap{
+    height: 100%;
+    overflow-y: scroll;
+}
+.imgPopUpWindow .modal .imgWrap .popupImg{
+    width: 100%;
+    height: 100%;
+}
 /* Sub Section Fullscreen PopUp Part End*/
 
 
 
 /* Media Query Part Start */
-@media (max-width : 1199px){
-    .topBar .frame{width: 100%;}
-    .topBar .frame .mainMenu ul li{display: none;}
-    .topBar .frame .mainMenu ul li:last-child{display: block;}
 
-    .mainVisual{width: 100%;}
-    .mainVisual .mainTitle{font-size: 10vw;}
-    .mainVisual .subTitle{display: none;}
-    .mainVisual .searchSection{width: 50%;}
-    .mainVisual .moreBtn{width: 40%; height: 40px;}
-    .mainVisual .moreBtn .moreBtn_bg{height: 38px;}
-    .mainVisual .moreBtn .btnText{font-size: 16px; line-height: 38px;}
-
-    #footer .frame{width: 100%;}
-}
-
-@media (max-width : 575px){
-    .mainVisual .searchSection{width: 80%;}
-
-    #loginSection .loginWindow{width: 90%; height: 9
-        0%;}
-    #joinSection .joinWindow{width: 90%; height: 90%;}
-    #joinSection .joinWindow .joinInputBox{margin: 30px auto;}
-    #loginSection .loginWindow #loginBtn, #joinSection .joinWindow #joinBtn{margin-top: 10px;}
-    #loginSection .loginWindow .closeBtn, #joinSection .joinWindow .closeBtn{font-size: 40px; margin: 0; color: #333; line-height: 1; position: absolute; top: 40px; right: 40px; cursor: pointer;}
-    .imgPopUpWindow .imgPopup .close_btn{font-size: 40px; margin: 0; color: #fff; line-height: 1; position: absolute; top: -50px; right: -10px; cursor: pointer;}
-
-    
-
-    #footer .frame .secFrame{text-align: center; margin-bottom: 10px;}
-    #footer .frame .secLeft ul{font-size: 0;}
-    #footer .frame .secLeft ul li{float: none; display: inline-block;}
-    #footer .frame .secRight{float: none; font-size: 0;}
-    #footer .frame .secRight ul li{float: none; display: inline-block;}
+@media (max-width : 767px){
+    .topBar{
+        width: 100%;
+    }
+    .topBar .mainMenu .link{
+        margin: 0;
+    }
+    .topBar .mainMenu .logoLink .logo{
+        width: 12rem;
+    }
+    .specialHeading,
+    .specialHeading span{
+        display: inline-block;
+        font-size: 5rem;
+    }
+    .mainVisual .moreBtn{
+        position: absolute;
+        bottom: 13rem;
+        left: calc(50% - 15rem);
+    }
+    .contentSection{
+        width: 100%;
+    }
+    .tabs{
+        padding: 0;
+    }
+    .tab{
+        padding: 1rem 1rem;
+    }
+    .gallery{
+        border-radius: 0;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .imgPopUpWindow .modal{
+        width: 30rem;
+    }
+    .imgPopUpWindow .modal .closeBtn{
+        top: -4rem;
+        right: -3rem;
+    }
+    .imgPopUpWindow .modal .imgWrap img{
+        width: 100%;
+    }
+    .profile img{
+        width: 12rem;
+    }
+    #footer .frame{
+        width: 100%;
+    }
 }
 /* Media Query Part End */
-
-
-/* About Us Page */
-
-.aboutUsFrame{width: 100%; height: auto;}
-.aboutUsFrame .rgstSection{width: 1200px; height: auto; margin: 0 auto; padding: 60px 8.33%;}
-.rgstSection .leftSection{float: left; width: 50%;}
-.rgstSection .leftSection .l_sec_tit{width: 60%; font-size: 40px; font-weight: bold; color: #777; word-break: keep-all; margin-top: 50px;}
-.rgstSection .leftSection .l_sec_txt{width: 80%; font-size: 16px; color: #777; word-break: keep-all; margin-top: 20px;}
-.rgstSection .leftSection .l_sec_btn{width: 160px; height: 40px; background: #444; border-radius: 8px; margin-left: 20%; margin-top: 50px; cursor: pointer;}
-.rgstSection .leftSection .l_sec_btn:hover{background: #777;}
-.rgstSection .leftSection .l_sec_btn p{font-size: 16px; font-weight: bold; color: #fff; line-height: 40px; text-align: center;}
-
-.rgstSection .rightSection{float: right; width: 50%;}
-.rgstSection .rightSection .r_sec_img{width: 100%; height: 580px; background: url(../img/aboutus/img_rgst.jpg) 50% 50% no-repeat; background-size: contain;}
-.aboutUsFrame .rgstSection::after{content: ""; display: block; clear: both;}
-
-
-.secIntroduce{width: 1200px; height: auto; margin: 0 auto; padding: 60px 10px;}
-.secIntroduce .boxTitle{font-size: 40px; color: #777; text-align: center; width: 49.98%; word-break: keep-all; margin: 0 auto;}
-.secIntroduce .contBox{padding: 10px; margin: 20px 0;}
-.secIntroduce .contBox .leftBox{width: calc(58.31% - 20px); float: left; padding: 0 10px;}
-.secIntroduce .contBox .leftBox .l_box_tit{font-size: 20px; font-weight: bold; color: #777; margin: 20px 0;}
-.secIntroduce .contBox .leftBox .l_box_txt{font-size: 16px; color: #777; margin: 10px 0;}
-
-.secIntroduce .contBox .rightBox{width: calc(41.65% - 20px); float: right; padding: 0 10px;}
-.secIntroduce .contBox .rightBox .r_box_img{width: 100%; height: 300px; background-position: 50% 50%; background-size: contain; background-repeat: no-repeat; border-radius: 8px;}
-.secIntroduce .contBox:nth-child(2) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro1.jpg);}
-.secIntroduce .contBox:nth-child(3) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro2.jpg);}
-.secIntroduce .contBox:nth-child(4) .rightBox .r_box_img{background-image: url(../img/aboutus/img_intro3.jpg);}
-
-.secIntroduce .contBox:nth-child(3) .leftBox{float: right;}
-.secIntroduce .contBox:nth-child(3) .rightBox{float: left;}
-.secIntroduce .contBox::after{content: ""; display: block; clear: both;}
-
-
-@media (max-width:1199px){
-    #content{width: 100%;}
-    .aboutUsFrame .rgstSection{width: 100%; padding: 60px 10px;}
-    .rgstSection .leftSection .l_sec_tit{width: 100%; text-align: center; padding: 0 20px;}
-    .rgstSection .leftSection .l_sec_txt{width: 100%; text-align: center; padding: 0 20px}
-    .rgstSection .leftSection .l_sec_btn{margin: 50px auto 0;}
-    .secIntroduce{width: 100%;}
-}
-
-@media (max-width:575px){
-    .aboutUsFrame{background: none;}
-
-    .rgstSection .leftSection{float: none; width: 100%;}
-    .rgstSection .leftSection .l_sec_btn{width: 30%; margin: 0 auto; margin-top: 30px;}
-    .rgstSection .leftSection .l_sec_tit{width: 90%; font-size: 30px; margin: 0 auto; text-align: center;}
-    .rgstSection .leftSection .l_sec_txt{width: 90%; font-size: 16px; margin: 0 auto;}
-
-    .rgstSection .rightSection{display: none;}
-
-    .secIntroduce .boxTitle{font-size: 30px; width: 100%;}
-
-    .secIntroduce .contBox .leftBox{width: 100%; float: none; padding: 0;}
-    .secIntroduce .contBox .rightBox{width: 100%; float: none; padding: 0;}
-
-
-}
