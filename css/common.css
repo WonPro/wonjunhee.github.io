@@ -378,7 +378,8 @@ header.sticky{
 .contentSection{
     width: 76.8rem;
     margin: 0 auto;
-    padding: 6rem 2rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     background-image: url(../img/img_contentBackground.jpg);
 }
 
@@ -446,6 +447,8 @@ header.sticky{
 
     /* Contact section part Start */
     #contact{
+        padding-left: 2rem;
+        padding-right: 2rem;
         padding-bottom: 12rem;
     }
 
@@ -635,6 +638,9 @@ header.sticky{
     }
     #footer .frame{
         width: 100%;
+    }
+    #toggleButton{
+        bottom: 1rem;
     }
 }
 /* Media Query Part End */
