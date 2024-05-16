@@ -375,12 +375,14 @@ header.sticky{
 
 
 /* section part Start */
+.contentWrap{
+    background-image: url(../img/img_contentBackground.jpg);
+}
 .contentSection{
     width: 76.8rem;
     margin: 0 auto;
     padding-top: 6rem;
     padding-bottom: 6rem;
-    background-image: url(../img/img_contentBackground.jpg);
 }
 
     /* Portfolio section part Start */

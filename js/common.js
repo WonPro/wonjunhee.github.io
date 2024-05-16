@@ -330,7 +330,7 @@ $(document).ready(function(){
     //Top Button Part
     $(window).scroll(function(){
         let $nowScroll = $(this).scrollTop();
-        let $target = $("#contentSection").offset().top-200;
+        let $target = $("#contentWrap").offset().top-200;
 
         if($nowScroll>$target){
             $(".topBtn").slideDown(500);
