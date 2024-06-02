@@ -377,6 +377,7 @@ header.sticky{
 /* section part Start */
 .contentWrap{
     background-image: url(../img/img_contentBackground.jpg);
+    background-attachment: fixed;
 }
 .contentSection{
     width: 76.8rem;
